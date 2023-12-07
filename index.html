@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MagiChef</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <header class="borde fixed-top p-0 container">
+        <h1 class="px-2" id="logo">MagiChef</h1>
+
+        <nav class="navbar navbar-expand-md bg-body-tertiary" data-bs-theme="dark" >
+          <div class="container-fluid">
+            <button class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#barra">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="barra">
+              <ul class="navbar-nav ms-auto text-center">
+                <li class="nav-item">
+                  <a class="nav-link" href="info.html" data-ancla="60">Info</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+
+      <section id="seccion2" class="container">
+        <div class="row">
+          <article id=queEs>
+          <h2>¿Qué es MagiChef?</h2>
+          <p>MagiChef es una nueva aplicación diseñada para facilitar la organización de comidas semanales, ayudándote a mantener una dieta saludable. Ofrece funciones intuitivas que permiten planificar y gestionar tus comidas de manera eficiente, promoviendo hábitos alimenticios balanceados y convenientes.</p>
+
+          <p>¡Ahora podrás incluir en un solo lugar todos los platillos que más te gusten!</p>
+        </article>
+        </div>
+
+        <section id="seccion3" class="container">
+            <div class="row">
+              <article>
+              <h2>Importancia de una dieta saludable</h2>
+              <p>Comer bien es esencial para mantener un estilo de vida saludable. Una dieta equilibrada proporciona los nutrientes necesarios para el funcionamiento óptimo del cuerpo, fortalece el sistema inmunológico y reduce el riesgo de enfermedades crónicas. Además, influye positivamente en el bienestar mental, mejorando el estado de ánimo y la concentración. La alimentación adecuada es clave para mantener la energía, la vitalidad y promover un envejecimiento saludable</p>
+            <p>Además de los beneficios físicos, la alimentación adecuada impacta directamente en el rendimiento diario. Una dieta balanceada contribuye a la regulación del peso corporal, favoreciendo la prevención de la obesidad y sus consecuencias asociadas. La adecuada ingesta de nutrientes también optimiza la función metabólica, asegurando la eficiente conversión de los alimentos en energía.</p>
+            <p>Cultivar hábitos alimenticios saludables no solo es una inversión en la salud a largo plazo, sino que también potencia la calidad de vida diaria, promoviendo un bienestar integral tanto físico como mental.</p>
+
+
+        <h3>Ingresá tu comida de la semana</h3>
+
+        <div id=ingresar>
+          <div id="seccion4" class="container">
+            <label for="dia">Día de la semana:</label>
+            <input type="text" id="dia" placeholder="Ejemp: Lunes">
+          </div>
+
+          <div id=desayunito>
+            <label for="tipoComida">Tipo de comida:</label>
+            <select id="tipoComida">
+              <option value="desayuno">Desayuno</option>
+              <option value="almuerzo">Almuerzo</option>
+              <option value="cena">Cena</option>
+            </select>
+          </div>
+
+          <div id=comidita>
+            <label for="comida">Comida:</label>
+            <input type="text" id="comida" placeholder="Ejemp: medialunas">
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button id="guardar" class="btn btn-outline-dark">Guardar</button>
+        </div>
+          </div>
+
+          <div id="resultado"></div>
+
+          <script>
+            
+            $(document).ready(function() {
+              cargarDatosGuardados();
+            });
+
+            
+            $("#guardar").on("click", function() {
+              var dia = $("#dia").val();
+              var tipoComida = $("#tipoComida").val();
+              var comida = $("#comida").val();
+
+              var diasSemana = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"];
+              
+              if (dia && tipoComida && comida) {
+                var diaMinusculas = dia.toLowerCase();
+
+                if (diasSemana.includes(diaMinusculas)) {
+                  
+                var datosExist = JSON.parse(localStorage.getItem("planComidas")) || {};
+
+                
+                datosExist[dia] = datosExist[dia] || {};
+                datosExist[dia][tipoComida] = comida;
+
+                
+                localStorage.setItem("planComidas", JSON.stringify(datosExist));
+
+                
+                cargarDatosGuardados();
+                } else {
+                  alert("Por favor, ingresa un día de la semana válido");
+                }
+              } else {
+                alert("Por favor, completa para continuar");
+              }
+            });
+
+            
+            function cargarDatosGuardados() {
+              var datosExist = JSON.parse(localStorage.getItem("planComidas")) || {};
+
+              var resultado = "<h3>Plan de Comidas Guardado</h3>";
+
+              for (var dia in datosExist) {
+                resultado += "<p><strong>" + dia + "</strong>:</p>";
+
+                for (var tipoComida in datosExist[dia]) {
+                  resultado += "<p>" + tipoComida + ": " + datosExist[dia][tipoComida] + "</p>";
+                }
+              }
+
+              $("#resultado").html(resultado);
+            }
+          </script>
+
+        </body>
+        </html>
+
+
+          <footer class="container">
+          <div class="copy">
+              <p>&copy; ESCUELA DA VINCI</p>
+          </div>
+          </footer>
+
+            <script src="js/bootstrap.bundle.js"></script>
+            <script src="js/marcaBoton.js" ></script>
+
+            <script>
+              const barra = document.querySelector(".navbar-collapse");
+        const cierre = new bootstrap.Collapse(barra, {
+            toggle: false
+        });
+        const botones = document.querySelectorAll(".nav-item > a");
+        const navegar = function (evento) {
+            evento.preventDefault();
+            const seccionApuntada = this.hash;
+            if (barra.classList.contains('show')) {
+                cierre.toggle()
+                barra.addEventListener("hidden.bs.collapse", function () {
+                    let distancia = document.querySelector(seccionApuntada).offsetTop;
+                    if (seccionApuntada.length != 0) {
+                        distancia = distancia;
+                        scroll({ top: distancia, behavior: "smooth" });
+                    }
+                });
+            } else {
+                let distancia = document.querySelector(seccionApuntada).offsetTop;
+                if (seccionApuntada.length != 0) {
+                    distancia = distancia;
+                    scroll({ top: distancia, behavior: "smooth" });
+                }
+            }
+        }
+        botones.forEach(boton => {
+            boton.addEventListener("click", navegar);
+        });
+            </script>
+
+            <script>
+              if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('sw.js')
+        }
+            </script>
+</body>
+</html>

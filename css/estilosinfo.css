@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0px;
+  background-color: #f4f4f4;
+}
+
+.cursada {
+  text-align: center;
+  background-color: #5a5858;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.integrantes {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.integrante {
+  text-align: center;
+  margin: 0 15px;
+}
+
+.integrante img {
+  width: 150px;
+  height: 150px;
+  border-radius: 15%;
+  margin-bottom: 10px;
+}
+
+
+
+button{
+  margin: auto;
+}

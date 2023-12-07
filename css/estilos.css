@@ -1,0 +1,85 @@
+header {
+    position: relative;
+}
+
+#logo {
+    width: 134px;
+    height: 30px;
+    background: url(../recursos/logo.png);
+    font-size: 0;
+    position: absolute;
+    margin-top: 15px;
+    left: .75rem;
+    z-index: 10;
+}
+
+h2{
+    text-align: left;
+    margin-top: 4rem;
+}
+
+section{
+  background-color: white
+}
+
+#seccion2{
+  margin-top: 1.5rem;
+}
+
+#queEs{
+  padding: 1.5rem;
+}
+
+#ingresar{
+  background: #ffbb00;
+  border-radius: 2%;
+  padding: 20px;
+  text-align: center;
+}
+
+h3{
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+}
+
+p, h2, h3, label{
+  color: #000;
+}
+
+input{
+  margin: auto;
+}
+
+label, input{
+  display: block;
+}
+
+input, select{
+  margin-bottom: 1rem;
+}
+
+#guardar{
+  margin-bottom: 1rem;
+  margin-left: 1rem
+}
+
+#desayunito, #comidita{
+padding-left: 0.9rem;
+}
+
+#resultado{
+padding-top: 1.5rem;  
+}
+
+footer{
+    height: fit-content;
+    width: 100%;
+    background-color: #5a5858;
+    color: antiquewhite;
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
